@@ -15,3 +15,17 @@ namespace :setup_javawrapper_build do
 end
 
 task :default => 'setup_javawrapper_build:copy_files_from_build'
+
+
+
+
+# Reference: 
+# http://creedcultcode.blogspot.in/2011/02/rake-fundamentals-rakefiles-and-tasks.html
+#
+# A code block is a special Ruby construct that you can think of like an anonymous method or a lambda.  
+# When you call a rake task, rake first executes all the prerequisite tasks you listed in the array in the first argument, 
+# and then executes the code in the do…end code block.  If you only want to run prerequisite tasks without executing any 
+# other code, just don’t include a do…end code block. 
+#
+# Thing to learn : How code blocks are used -> The function performs its prerequisite activity and then calls the 
+#                  code block or lambda function.
