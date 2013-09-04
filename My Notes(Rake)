@@ -1,0 +1,38 @@
+My Notes(Rake)
+Three types of tasks are available in Rake: tasks, file tasks, and directory tasks. You've already seen regular tasks, so let's discuss file and directory tasks. (IBM Notes)
+
+Rake provides (via the fileutils package) a bevy of simple unix-like commands for file operations such as cp, mv, rm, etc. It also provides uptodate? which is perfect for these kinds of checks. (Martin Fowler)
+
+How to call a file task from default task (Martin Fowler)
+
+Multiple Rake Files (http://rake.rubyforge.org/doc/rakefile_rdoc.html)
+Not all tasks need to be included in a single Rakefile. Additional rake files (with the file extension “.rake”) may be placed in rakelib directory located at the top level of a project (i.e. the same directory that contains the main Rakefile).
+
+Also, rails projects may include additional rake files in the lib/tasks directory.
+
+
+# ----> Neeche ka khud hi strike hua aur samajh gaya (and also help from CODE, CULT and CREED) <----
+######### Code Start ###########
+SOURCE_INPUT_FILE_PATH = File.join(SOURCE_BUILD_DIR, SOURCE_BUILD_NAME, 'lib', SOURCE_BUILD_PLATFORM, SOURCE_FILE_NAME)   
+TARGET_DIR_PATH = File.join('/home/test/Vibin/Workarea/Research/', TARGET_DIR)
+
+desc "Create test directory"
+directory TARGET_DIR_PATH
+
+file "libgnsdk_correlates.so.3.06.0" => [TARGET_DIR_PATH, SOURCE_INPUT_FILE_PATH] do |t|  
+		cp SOURCE_INPUT_FILE_PATH, File.join(TARGET_DIR_PATH, t.name)
+end
+######### Code End ###########
+
+Whatever is added in prerequisite gets called first, so TARGET_DIR_PATH calls the directory task TARGET_DIR_PATH and the definition 
+
+	file TARGET_DIR_PATH do |t| mkdir t.name end 
+
+SOURCE_INPUT_FILE_PATH calls the definition of SOURCE_INPUT_FILE_PATH.
+ # ----> <-----
+
+
+
+
+
+Rake is written in Ruby and uses Ruby as its syntax, so the learning curve is slight. Rake uses Ruby's metaprogramming capabilities (IBM)
