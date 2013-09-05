@@ -6,7 +6,7 @@ namespace :setup_javawrapper_build do
     SDK_LIBRARY_FILES      = File.join(SOURCE_BUILD_DIR, SOURCE_BUILD_NAME, 'lib', SOURCE_BUILD_PLATFORM, '*.so.*')   
 
 
-    TARGET_DIR = 'Test/xxx/xxx'
+    TARGET_DIR = 'Test/xxxx/xxxx'
     TARGET_DIR_PATH = File.join('/home/test/Vibin/Workarea/Research/', TARGET_DIR)
 
     desc "Create test directory"
@@ -16,7 +16,7 @@ namespace :setup_javawrapper_build do
 	FileList[SDK_LIBRARY_FILES].each do |source_file|	
 		target_file = File.join(TARGET_DIR_PATH, File.basename(source_file))
 		
-		file target_file do |t|							   		   
+		file target_file => [TARGET_DIR_PATH] do |t|							   		   
 			cp source_file, target_file					           
 		end                                                        
 																   
