@@ -1,8 +1,8 @@
 namespace :setup_javawrapper_build do
 	SOURCE_BUILD_DIR      = '/home/test/Vibin/Workarea/Projects/builds'
- 	SOURCE_BUILD_NAME      = 'gnsdk-3.06.0.1071-20130822'
+ 	SOURCE_BUILD_NAME      = 'xxxx'
  	SOURCE_BUILD_PLATFORM  = 'linux_x86-64'
- 	SOURCE_FILE_NAME       = 'libgnsdk_correlates.so.3.06.0'
+ 	SOURCE_FILE_NAME       = 'xxxx'
     SOURCE_INPUT_FILE_PATH = File.join(SOURCE_BUILD_DIR, SOURCE_BUILD_NAME, 'lib', SOURCE_BUILD_PLATFORM, SOURCE_FILE_NAME)   
 
 
@@ -14,11 +14,11 @@ namespace :setup_javawrapper_build do
   
 
 	desc "Copy sdk_library files from build_folder/lib/linix_x64 to vendor/lib"
-	file "libgnsdk_correlates.so.3.06.0" => [TARGET_DIR_PATH, SOURCE_INPUT_FILE_PATH] do |t| 
+	file SOURCE_FILE_NAME => [TARGET_DIR_PATH, SOURCE_INPUT_FILE_PATH] do |t| 
 		cp SOURCE_INPUT_FILE_PATH, File.join(TARGET_DIR_PATH, t.name)
 	end
 
-	task :copy_sdk_library => ['libgnsdk_correlates.so.3.06.0'] # How to call a file task from MartinFowler
+	task :copy_sdk_library => [SOURCE_FILE_NAME] # How to call a file task from MartinFowler
 
 	#task :copy_java_jni_files do
 	#	puts 'Copied java_jni files from build_folder/wrapper/sdk_java/lib/linix_x64 to vendor/lib'
